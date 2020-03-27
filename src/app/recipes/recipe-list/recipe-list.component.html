@@ -1,1 +1,39 @@
-<app-recipe-item></app-recipe-item>
+<div class="row">
+  <div class="col-xs-12">
+    <button (click)='onClickRecipe()' class="btn btn-success">
+        New Recipe
+    </button>
+  </div>
+  <div *ngIf='onClickRecipe(); else buttonClicked' class="row">
+    <div class='col-xs-12'>
+      <a href='#' class='list-group-item clearfix'>
+        <div class='pull-left'>
+          <h4 class='list-group-item-heading'>Recipe Name</h4>
+          <p class='list-group-item-text'>Description</p>
+        </div>
+        <span class='pull-right'>
+          <img src="" alt="" class='image-responsive' style="max-height: 50px;">
+        </span>
+      </a>
+    </div>
+  </div>
+
+      <ng-template #buttonClicked>
+        <div class="row">
+          <div class='col-xs-12'>
+            <a href='#' class='list-group-item clearfix'>
+              <div class='pull-left'>
+                <h4 class='list-group-item-heading'>{{recipes[0]}}</h4>
+                <p class='list-group-item-text'>{{recipes[1]}}</p>
+              </div>
+              <span class='pull-right'>
+                <img src='{{recipes[2]}}'' alt="picture" class='image-responsive' style="max-height: 50px;">
+              </span>
+            </a>
+          </div>
+        </div>
+      </ng-template>
+      <app-recipe-item></app-recipe-item>
+</div>
+
+

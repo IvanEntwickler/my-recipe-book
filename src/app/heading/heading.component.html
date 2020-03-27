@@ -1,25 +1,29 @@
-<nav class='navbar navbar-default'>
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a href='#' class='navbar-brand'>My-Recipe-Book</a>
-    </div>
+<nav class="navigation-bar">
+  <div class="navigation-bar__header">
+    <a href='#' class="navigation-bar__header-brand">My-Recipe-Book</a>
+  </div>
 
-    <div class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
-        <li><a href='#'>Recipes</a></li>
-        <li><a href='#'>Shopping List</a></li>
-      </ul>
+  <div class="navigation-bar__items">
+    <ul class="navigation-bar__items-links">
+      <li class="navigation-bar__items-links-a">
+        <a href="#">Recipes </a>
+      </li>
+      <li class="navigation-bar__items-links-a">
+        <a href="#"> Shopping List</a>
+      </li>
+    </ul>
+  </div>
 
-      <ul class="nav navbar-nav navbar-right">
-        <li class='dropdown'>
-          <a href='#' class='dropdown-toggle' role='button'>Manage <span class='caret'></span></a>
-          <ul class='dropdown-menu'>
-            <li><a href='#'>Save Data</a></li>
-            <li><a href='#'>Fetch Data</a></li>
+    <div class="navigation-bar__manage">
+      <ul>
+        <li class="navigation-bar__manage-dropdown">
+          <a href="#" class="navigation-bar__manage-dropdown-toggle">Manage <span>></span></a>
+          <ul class="navigation-bar__manage-dropdown-menu">
+            <li class="dropdown">
+            <li><a href="#">Save Data</a></li>
+            <li><a href="#">Fetch Data</a></li>
           </ul>
         </li>
       </ul>
-
-    </div>
   </div>
 </nav>
