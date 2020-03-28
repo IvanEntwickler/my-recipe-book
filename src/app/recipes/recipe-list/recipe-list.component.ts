@@ -8,16 +8,12 @@ import { Recipe } from '../recipe.model';
 })
 export class RecipeListComponent implements OnInit {
   recipes: Recipe[] = [
-    new Recipe('Test', 'Test2', 'https://image.shutterstock.com/image-photo/colorful-flower-on-dark-tropical-260nw-721703848.jpg')
+    new Recipe('Test', 'Test2', 'https://www.seoclerk.com/pics/want36192-1zCw5a1455908610.jpg')
   ];
 
   constructor() { }
 
   ngOnInit(): void {
-  }
-
-  onClickRecipe() {
-    return this.recipes;
   }
 
 }
