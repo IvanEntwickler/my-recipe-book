@@ -3,13 +3,14 @@
     <a href='#' class="navigation-bar__header-brand">My-Recipe-Book</a>
   </div>
 
+
   <div class="navigation-bar__items">
     <ul class="navigation-bar__items-links">
       <li class="navigation-bar__items-links-a">
-        <a href="#">Recipes </a>
+        <a (click)="onClickHref('recipe')" href="http://localhost:4200/app-recipes">Recipes </a>
       </li>
       <li class="navigation-bar__items-links-a">
-        <a href="#"> Shopping List</a>
+        <a (click)="onClickHref('shopping-list')" href="http://localhost:4200/app-shopping-list"> Shopping List</a>
       </li>
     </ul>
   </div>
@@ -17,13 +18,9 @@
     <div class="navigation-bar__manage">
       <ul>
         <li class="navigation-bar__manage-dropdown">
-          <a href="#" class="navigation-bar__manage-dropdown-toggle">Manage <span>></span></a>
-          <ul class="navigation-bar__manage-dropdown-menu">
-            <li class="dropdown">
-            <li><a href="#">Save Data</a></li>
-            <li><a href="#">Fetch Data</a></li>
-          </ul>
+          <a href="#" class="navigation-bar__manage-dropdown-toggle">Manage</a>
         </li>
       </ul>
   </div>
 </nav>
+

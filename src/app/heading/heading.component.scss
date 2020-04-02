@@ -1,8 +1,10 @@
 .navigation-bar{
   display: flex;
-  margin-bottom:5rem;
-  width: 100vw;
+  width: 100%;
   justify-content: space-between;
+  margin-bottom: 5rem;
+  background-color: rgba(247, 50, 83, 0.747);
+  border: 1px solid  rgba(247, 50, 83) ;
 }
 
 /////////Header+Header-brand
@@ -15,7 +17,7 @@
   .navigation-bar__header-brand{
     display: flex;
     align-items: center;
-    color: rgba(255, 166, 1, 0.623);
+    color: rgba(80, 72, 72);
     text-transform:uppercase;
     font-size: 2rem;
     font-weight:800;
@@ -33,10 +35,11 @@
     display: flex;
     flex:1;
     justify-content: space-between;
-    padding: 1.5rem 3rem;
+    padding: 1rem 2rem;
     align-items: center;
     margin-top: .1rem;
     margin-bottom: -10px;
+
 
 
 
@@ -47,8 +50,9 @@
     justify-content: center;
 
 
-    &-a{
+    &-a a{
       margin: 2rem;
+      color: black;
 
     }
 
@@ -59,27 +63,31 @@
 
   .navigation-bar__manage{
     display: flex;
-    justify-content: space-between;
-    padding: 1.5rem 3rem;
+    flex:1;
+    justify-content: flex-end;
+    padding: 1rem 2rem;
+    align-items: center;
+    margin-top: .1rem;
+    margin-bottom: -10px;
 
 
 
-    .navigation-bar__manage-dropdown{
+
+    .navigation-bar__manage-dropdown {
       display: flex;
       font-size: 2rem;
       list-style: none;
       align-items: center;
 
-
-
+      a{
+        color: black;
+      }
 
     }
-    .navigation-bar__manage-dropdown-toggle{
+    .navigation-bar__manage-dropdown-toggle {
       font-size: 2rem;
 
     }
-    .navigation-bar__manage-dropdown-menu{
-      list-style: none;
-  }
+
 }
 
