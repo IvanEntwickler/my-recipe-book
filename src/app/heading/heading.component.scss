@@ -1,7 +1,7 @@
 .navigation-bar{
   display: flex;
-  width: 100%;
-  justify-content: space-between;
+  width: 100vw;
+  height:8rem;
   margin-bottom: 5rem;
   background-color: rgba(247, 50, 83, 0.747);
   border: 1px solid  rgba(247, 50, 83) ;
@@ -33,12 +33,10 @@
 
   .navigation-bar__items{
     display: flex;
-    flex:1;
-    justify-content: space-between;
-    padding: 1rem 2rem;
     align-items: center;
     margin-top: .1rem;
     margin-bottom: -10px;
+
 
 
 
@@ -47,7 +45,7 @@
     display: flex;
     font-size: 2rem;
     list-style: none;
-    justify-content: center;
+
 
 
     &-a a{
