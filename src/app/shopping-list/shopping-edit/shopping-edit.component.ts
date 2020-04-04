@@ -10,6 +10,7 @@ export class ShoppingEditComponent implements OnInit {
   @ViewChild ('nameInput', {static: true}) nameInput: ElementRef;
   @ViewChild ('amountInput', {static: true}) amountInput: ElementRef;
   @Output() createIngredient = new EventEmitter<Ingredient>();
+  @Output() deleteIngredient = new EventEmitter<void>();
 
   constructor() { }
 
@@ -17,8 +18,15 @@ export class ShoppingEditComponent implements OnInit {
   }
 
   onClickAdd() {
-    const newIngredient = new Ingredient(this.nameInput.nativeElement.value, this.amountInput.nativeElement.value);
+    const typedName = this.nameInput.nativeElement.value;
+    const typedAmount = this.amountInput.nativeElement.value;
+
+    const newIngredient = new Ingredient(typedName, typedAmount);
     return this.createIngredient.emit(newIngredient);
+  }
+
+  onClickDelete() {
+    return this.deleteIngredient.emit();
   }
 
 }

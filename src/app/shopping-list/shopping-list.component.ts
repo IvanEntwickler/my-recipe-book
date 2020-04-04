@@ -19,7 +19,10 @@ export class ShoppingListComponent implements OnInit {
 
   onAddIngredients(ingredient: Ingredient) {
       return this.ingredients.push(ingredient);
+  }
 
+  onDeleteIngredients() {
+    return this.ingredients.pop();
   }
 
 }
