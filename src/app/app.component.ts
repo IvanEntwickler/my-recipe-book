@@ -1,5 +1,5 @@
 
-import { Component, Input } from '@angular/core';
+import { Component} from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +13,7 @@ export class AppComponent {
   onNavigate(feature: string) {
     return this.loadedFeature = feature;
   }
+
 
 
 }

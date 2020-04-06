@@ -1,4 +1,4 @@
-<nav class="navigation-bar">
+<!-- <nav class="navigation-bar">
   <div class="navigation-bar__header">
     <a href='#' class="navigation-bar__header-brand">My-Recipe-Book</a>
   </div>
@@ -15,12 +15,48 @@
     </ul>
   </div>
 
-    <div class="navigation-bar__manage">
+    <div class="navigation-bar__manage" >
       <ul>
-        <li class="navigation-bar__manage-dropdown">
-          <a href="#" class="navigation-bar__manage-dropdown-toggle">Manage</a>
+        <li class="dropdown"  style="list-style:none; font-size: 2rem;">
+          <a
+          href="#"
+          class="dropdown-toggle"
+          role="group"
+          style="text-decoration:none; color:black;"
+          >
+          Manage <span class=caret></span>
+        </a>
+        </li>
+        <ul class="dropdown-menu">
+          <li><a href="#">Save Data</a></li>
+          <li><a href="#">Fetch Data</a></li>
+        </ul>
+      </ul>
+  </div>
+</nav> -->
+<nav class='navbar navbar-default'>
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a href='#' class='navbar-brand'>My-Recipe-Book</a>
+    </div>
+
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li><a href='#' (click)="onClickHref('recipe')">Recipes</a></li>
+        <li><a href='#' (click)="onClickHref('shopping-list')">Shopping List</a></li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li class='dropdown' appDropdown>
+          <a href='#' class='dropdown-toggle' role='button'>Manage <span class='caret'></span></a>
+          <ul class='dropdown-menu'>
+            <li><a href='#'>Save Data</a></li>
+            <li><a href='#'>Fetch Data</a></li>
+          </ul>
         </li>
       </ul>
+
+    </div>
   </div>
 </nav>
 
