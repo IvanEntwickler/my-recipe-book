@@ -1,13 +1,11 @@
-<div class="row">
-  <div class="col-xs-12">
-    <a (click) = "onPushToDetail()" href='#' class='list-group-item clearfix'>
-      <div class='pull-left'>
-        <h4 class='list-group-item-heading'>{{recipe.name}}</h4>
-        <p class='list-group-item-text'>{{recipe.description}}</p>
-      </div>
-      <span class='pull-right'>
-        <img src='{{recipe.imagePath}}' alt="{{recipe.name}}" class='image-responsive' style="max-height: 50px;">
-      </span>
-    </a>
+
+<a  [routerLink]="[index]" class='list-group-item clearfix' style="cursor: pointer;">
+  <div class='pull-left'>
+    <h4 class='list-group-item-heading'>{{recipe.name}}</h4>
+      <p class='list-group-item-text'>{{recipe.description}}</p>
   </div>
-</div>
+  <span class='pull-right'>
+      <img [src]="recipe.imagePath" alt="{{recipe.name}}" class='image-responsive' style="max-height: 50px;">
+  </span>
+</a>
+

@@ -1,4 +1,5 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
+import { Router} from '@angular/router';
 
 
 @Component({
@@ -7,15 +8,18 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./heading.component.scss']
 })
 export class HeadingComponent implements OnInit {
-  @Output() linkEvent = new EventEmitter<string>();
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  onClickHref(feature: string) {
-    return this.linkEvent.emit(feature);
-  }
+  // onClickShopping() {
+  //   this.router.navigate(['/shopping-list']);
+  // }
+  // onClickRecipes() {
+  //   this.router.navigate(['/']);
+  // }
+
 
 }

@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-xs-12">
     <img
-    src="{{recipe.imagePath}}"
+    [src]="recipe.imagePath"
     alt="{{recipe.name}}"
     class='image-responsive'
     style="width: 20rem;"
@@ -24,13 +24,13 @@
      </button>
      <ul class="dropdown-menu">
        <li>
-         <a href='#' (click)="pushRecipeToShoppingList()" role='button'>To Shopping List </a>
+         <a (click)="pushRecipeToShoppingList()" role='button'>To Shopping List </a>
         </li>
         <li>
-          <a href='#'>Edit Recipe</a>
+          <a style="cursor: pointer;" >Edit Recipe</a>
          </li>
          <li>
-          <a href='#'>Remove Recipe</a>
+          <a style="cursor: pointer;">Remove Recipe</a>
          </li>
      </ul>
    </div>
