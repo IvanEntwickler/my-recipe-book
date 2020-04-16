@@ -27,7 +27,7 @@
          <a (click)="pushRecipeToShoppingList()" role='button'>To Shopping List </a>
         </li>
         <li>
-          <a style="cursor: pointer;" >Edit Recipe</a>
+          <a [routerLink]="['/recipes', this.id, 'edit']" style="cursor: pointer;" >Edit Recipe</a>
          </li>
          <li>
           <a style="cursor: pointer;">Remove Recipe</a>
