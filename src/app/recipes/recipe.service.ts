@@ -1,14 +1,12 @@
-import { ActivatedRoute } from '@angular/router';
 import { ShoppingListService } from './../shopping-list/shopping-list.service';
 
 import { Ingredient } from './../shared/ingredient.model';
-import { EventEmitter, Injectable, OnInit } from '@angular/core';
+import {Injectable} from '@angular/core';
 import { Recipe } from './recipe.model';
 
 
 @Injectable()
 export class RecipeService {
-  recipeWasClicked = new EventEmitter<Recipe>();
 
   private recipes: Recipe[] = [
     new Recipe(
