@@ -19,13 +19,18 @@ getIngredient(index: number) {
   return this.ingredients[index];
 }
 
+editIngredient(index: number, newIngredient: Ingredient) {
+  this.ingredients[index] = newIngredient;
+  this.ingredientsChange.next(this.ingredients.slice());
+}
+
 onAddIngredients(ingredient: Ingredient) {
     this.ingredients.push(ingredient);
     this.ingredientsChange.next(this.ingredients.slice());
 }
 
-onDeleteIngredients() {
-  this.ingredients.pop();
+onDeleteIngredients(index: number) {
+  this.ingredients.splice(index, 1);
   this.ingredientsChange.next(this.ingredients.slice());
 }
 

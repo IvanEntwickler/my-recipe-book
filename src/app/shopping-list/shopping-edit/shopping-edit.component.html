@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-xs-12">
-    <form (ngSubmit)= "onClickAdd(f)" #f="ngForm">
+    <form (ngSubmit)= "editMode ? onUpdate(f) : onClickAdd(f)" #f="ngForm">
       <div class="col-sm-5 form-group">
         <label for="name">Name</label>
         <!-- pattern is short cut prop binding to a regular expresstion so that only values greater than 0 are allowed -->
@@ -9,7 +9,6 @@
         id='name'
         class='form-control'
         required
-        pattern="^[1-9]+[0-9]*$"
         name="name"
         ngModel
         >
@@ -21,6 +20,7 @@
         id='amount'
         class='form-control'
         required
+        pattern="^[1-9]+[0-9]*$"
         name="amount"
         ngModel
         >
@@ -28,8 +28,8 @@
       <div class="row">
         <div class="col-xs-12">
           <button  class="btn btn-success" type='submit' [disabled]= "!f.valid"> {{ editMode ? 'Update' : 'Add'}} </button>
-          <button class="btn btn-danger" type='button' (click) ="onClickDelete()"> Delete </button>
-          <button class="btn btn-primary" type='button'> Clear </button>
+          <button *ngIf="editMode" class="btn btn-danger" type='button' (click) ="onClickDelete()"> Delete </button>
+          <button class="btn btn-primary" type='button' (click)="onClearForm()"> Clear </button>
         </div>
       </div>
     </form>

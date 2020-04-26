@@ -9,7 +9,7 @@ import { NgForm } from '@angular/forms';
   templateUrl: './shopping-edit.component.html',
   styleUrls: ['./shopping-edit.component.scss']
 })
-export class ShoppingEditComponent implements OnInit {
+export class ShoppingEditComponent implements OnInit, OnDestroy {
   @ViewChild('f', {static: false}) editForm: NgForm;
   editedIndex: number;
   editMode = false;
@@ -38,14 +38,29 @@ export class ShoppingEditComponent implements OnInit {
     return this.shoppingListService.onAddIngredients(newIngredient);
   }
 
+  onUpdate(form: NgForm) {
+    const value = form.value;
+    const updateIndex = this.editedIndex;
+    const newIngredient = new Ingredient(value.name, value.amount);
+    this.shoppingListService.editIngredient(updateIndex, newIngredient);
+    this.editMode = false;
+    form.reset();
+  }
+
 
 
   onClickDelete() {
-    return this.shoppingListService.onDeleteIngredients();
+    this.onClearForm();
+    this.shoppingListService.onDeleteIngredients(this.editedIndex);
   }
 
-  // ngOnDestroy() {
-  //   this.wasEdited.unsubscribe();
-  // }
+  onClearForm() {
+    this.editForm.reset();
+    this.editMode = false;
+  }
+
+  ngOnDestroy() {
+    this.wasEdited.unsubscribe();
+  }
 
 }
