@@ -7,12 +7,10 @@ import { Router} from '@angular/router';
   templateUrl: './heading.component.html',
   styleUrls: ['./heading.component.scss']
 })
-export class HeadingComponent implements OnInit {
+export class HeadingComponent {
 
   constructor(private router: Router) { }
 
-  ngOnInit(): void {
-  }
 
   // onClickShopping() {
   //   this.router.navigate(['/shopping-list']);
