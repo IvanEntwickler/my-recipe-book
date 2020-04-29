@@ -29,13 +29,14 @@
             id='imagePath'
             class='form-control'
             formControlName="imagePath"
+            #imagePath
             >
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col-xs-12">
-          <img src="" class="image-responsive">
+          <img [src]="imagePath.value" class="image-responsive">
         </div>
       </div>
       <div class="row">
@@ -55,8 +56,8 @@
       <div class="row">
         <div formArrayName="ingredients" class="col-xs-12">
           <div class="row"
-          *ngFor="let ingredientControl of controls"
-          [formGroupName]="ingredientControl"
+          *ngFor="let ingredientControl of controls; let i = index"
+          [formGroupName]="i"
           style="margin-top: 10px;"
           >
             <div  class="col-xs-8">
@@ -74,7 +75,7 @@
               >
             </div>
             <div class="col-xs-2">
-              <button class="btn btn-danger">X</button>
+              <button class="btn btn-danger" type="button" (click)='onDeleteIngredient(i)'>X</button>
             </div>
           </div>
           <hr>
