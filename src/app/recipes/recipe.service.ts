@@ -1,3 +1,4 @@
+import { DataStorageService } from './../shared/data-storage.service';
 import { Subject } from 'rxjs';
 import { ShoppingListService } from './../shopping-list/shopping-list.service';
 
@@ -40,6 +41,11 @@ export class RecipeService {
   }
   getRecipe(index: number) {
     return this.recipes[index];
+  }
+
+  replaceRecipe(recipes: Recipe[]) {
+    this.recipes = recipes;
+    this.recipesChanged.next(this.recipes.slice());
   }
 
   onAddIngredientsToShoppingList(ingredients: Ingredient[]) {
