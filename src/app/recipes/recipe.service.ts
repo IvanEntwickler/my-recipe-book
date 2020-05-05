@@ -11,27 +11,7 @@ import { Recipe } from './recipe.model';
 export class RecipeService {
   recipesChanged = new Subject<Recipe[]>();
 
-  private recipes: Recipe[] = [
-    new Recipe(
-      'Wiener Schnitzel',
-      'super-tasty Schnitzel',
-      'https://static.essen-und-trinken.de/bilder/e9/b1/7321/galleryimage/ed956d4fa02f282fabdb282aa6bc6447.jpg',
-      [
-        new Ingredient('Meat', 1),
-        new Ingredient('French Fries', 20)
-      ],
-    ),
-    new Recipe(
-      'Burger',
-      'super-tasty Burger',
-      'https://media.kaufland.com/images/PPIM/AP_Content_2708/std.lang.all/66/67/Asset_3306667.jpg',
-      [
-        new Ingredient('Meat', 1),
-        new Ingredient('Cheese', 2),
-        new Ingredient('Bread', 1)
-      ]
-    )
-  ];
+  private recipes: Recipe[] = [];
 
   constructor(private shoppingListService: ShoppingListService) {}
 

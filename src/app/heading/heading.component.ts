@@ -1,7 +1,6 @@
 import { Recipe } from './../recipes/recipe.model';
 import { DataStorageService } from './../shared/data-storage.service';
 import { Component } from '@angular/core';
-import { Router} from '@angular/router';
 
 
 @Component({
@@ -12,23 +11,15 @@ import { Router} from '@angular/router';
 export class HeadingComponent {
   recipe: Recipe[];
 
-  constructor(private router: Router, private dataStorageService: DataStorageService) { }
+  constructor(private dataStorageService: DataStorageService) { }
 
   onSaveData() {
     return this.dataStorageService.storeRecipes();
   }
 
   onFetchData() {
-    this.dataStorageService.fetchRecipes();
+    this.dataStorageService.fetchRecipes().subscribe();
   }
-
-
-  // onClickShopping() {
-  //   this.router.navigate(['/shopping-list']);
-  // }
-  // onClickRecipes() {
-  //   this.router.navigate(['/']);
-  // }
 
 
 }

@@ -1,6 +1,9 @@
+
+
 import { Recipe } from './../recipes/recipe.model';
 
-
+import { map } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 import { RecipeService } from './../recipes/recipe.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -21,10 +24,16 @@ storeRecipes() {
 }
 
 fetchRecipes() {
-  this.http.get<Recipe[]>('https://ng-my-recipe-book-a7fe2.firebaseio.com/recipes.json').subscribe(
-    (recipes) => {
-    this.recipeService.replaceRecipe(recipes);
-    });
+  return this.http
+  .get<Recipe[]>('https://ng-my-recipe-book-a7fe2.firebaseio.com/recipes.json')
+  .pipe(map(recipes => {
+    ///// AFTER MAP OPERATOR TRANSFORMATION, JS MAP RETURNS RECIPE WITH INGREDIENTS ARRAY IF !undefiend else empty ARRAY
+    return recipes.map(recipe => ({...recipe, ingredients: recipe.ingredients ? recipe.ingredients : []}));
+  }),
+  tap(recipes => {
+      this.recipeService.replaceRecipe(recipes);
+    })
+  );
 }
 
 }
