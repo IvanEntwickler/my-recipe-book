@@ -14,12 +14,12 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
   editedIndex: number;
   editMode = false;
   editedItem: Ingredient;
-  wasEdited: Subscription;
+  private subscription: Subscription;
 
   constructor(private shoppingListService: ShoppingListService) { }
 
   ngOnInit() {
-    this.shoppingListService.editShoppingItem.subscribe(
+    this.subscription = this.shoppingListService.editShoppingItem.subscribe(
       (index: number) => {
         this.editMode = true;
         this.editedIndex = index;
@@ -59,8 +59,8 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
     this.editMode = false;
   }
 
-  ngOnDestroy() {
-    return this.wasEdited.unsubscribe();
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
 }
