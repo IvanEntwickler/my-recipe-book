@@ -1,3 +1,4 @@
+import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 import { AuthComponent } from './auth/auth.component';
 
 import { RecipeService } from './recipes/recipe.service';
@@ -37,7 +38,8 @@ import { RecipesEditComponent } from './recipes/recipes-edit/recipes-edit.compon
     DropdownDirective,
     RecipeStartComponent,
     RecipesEditComponent,
-    AuthComponent
+    AuthComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,
