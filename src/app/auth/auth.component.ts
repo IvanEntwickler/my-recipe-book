@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+
 import { AuthService, AuthResponseData } from './auth.service';
 import { NgForm } from '@angular/forms';
 import { Component, ViewChild } from '@angular/core';
@@ -14,7 +16,7 @@ export class AuthComponent {
   isLoading = false;
   isError: string = null;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   onToggleForm() {
     this.signMode = !this.signMode;
@@ -28,7 +30,8 @@ export class AuthComponent {
     const email = form.value.email;
     const password = form.value.password;
 
-    let authObservable: Observable<AuthResponseData>; // variable with type Observable that will store the subscription
+    // variable with type Observable that will store the subscription
+    let authObservable: Observable<AuthResponseData>;
 
     this.isLoading = true; // the loading spinner
     if (this.signMode) {
@@ -41,6 +44,7 @@ export class AuthComponent {
     authObservable.subscribe(resData => {
       console.log(resData);
       this.isLoading = false;
+      this.router.navigate(['/recipes']);
     }, errorMessage => {
       console.log(errorMessage);
       this.isError = errorMessage; // sets the property equal to the errorMessage which comes from the Observable

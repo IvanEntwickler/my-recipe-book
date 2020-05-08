@@ -1,6 +1,8 @@
+import { Subscription } from 'rxjs';
+import { AuthService } from './../auth/auth.service';
 import { Recipe } from './../recipes/recipe.model';
 import { DataStorageService } from './../shared/data-storage.service';
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 
 @Component({
@@ -8,10 +10,28 @@ import { Component } from '@angular/core';
   templateUrl: './heading.component.html',
   styleUrls: ['./heading.component.scss']
 })
-export class HeadingComponent {
-  recipe: Recipe[];
+export class HeadingComponent implements OnInit, OnDestroy {
+  private subscription: Subscription;
 
-  constructor(private dataStorageService: DataStorageService) { }
+  recipe: Recipe[];
+  isAuth = false;
+
+  ngOnInit() {
+    // if user object is there isAuth will become true, if null isAuth=false
+    this.subscription = this.authService.userSubject.subscribe(
+      user => {
+        switch (user) {
+          case user:
+          this.isAuth = !this.isAuth;
+          break;
+          case null:
+          return this.isAuth;
+        }
+      }
+    );
+  }
+
+  constructor(private dataStorageService: DataStorageService, private authService: AuthService) { }
 
   onSaveData() {
     return this.dataStorageService.storeRecipes();
@@ -19,6 +39,10 @@ export class HeadingComponent {
 
   onFetchData() {
     this.dataStorageService.fetchRecipes().subscribe();
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
 
