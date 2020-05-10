@@ -2,7 +2,7 @@ import { User } from './user.model';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, tap } from 'rxjs/operators';
-import { throwError, Subject } from 'rxjs'; /// creates a new observable which wraps the error
+import { throwError, BehaviorSubject } from 'rxjs';
 
 /// Data we get back from Firebase
 export interface AuthResponseData {
@@ -17,8 +17,62 @@ export interface AuthResponseData {
 
 @Injectable({providedIn: 'root'})
 export class AuthService {
-  userSubject = new Subject<User>();
+
+  // gets access to the currently active user
+  userSubject = new BehaviorSubject<User>(null);
+  private tokenExpireTimer: any;
+
   constructor(private http: HttpClient) {}
+
+  // auto logout if expireDuration is arrived
+  autoLogout(expireDuration: number) {
+   this.tokenExpireTimer = setTimeout(() => {
+      this.logOut();
+    }, expireDuration);
+  }
+
+  logOut() {
+    // sets the user back to initail state null
+    this.userSubject.next(null);
+    // removes user Data
+    localStorage.removeItem('userData');
+    // checks if tokenExpireTimer is activ, if we have one it gets cleared
+    if (this.tokenExpireTimer) {
+      clearTimeout(this.tokenExpireTimer);
+    }
+    this.tokenExpireTimer = null;
+  }
+
+  autoLogin() {
+    // settingtypes for userData
+    // converting JSON back to JS Object with JSON.parse()
+    // checking if userdata is there
+   const userData: {
+     email: string;
+     id: string;
+     _token: string;
+     _tokenExpireDate: string;
+   } = JSON.parse(localStorage.getItem('userData'));
+   if (!userData) {
+    return;
+   }
+   // created loadedUser as new User
+   const loadedUser = new User(
+     userData.email,
+     userData.id,
+     userData._token,
+     new Date(userData._tokenExpireDate)
+     );
+
+     // return only if token is valid(expiration date not in the past),
+     // loadedUser gets emitted as cuurently active user
+   if (loadedUser.token) {
+      this.userSubject.next(loadedUser);
+      // calculates the expireDuration tokenExpireDate - actual Date
+      const expireDuration = new Date(userData._tokenExpireDate).getTime() - new Date().getTime();
+      this.autoLogout(expireDuration);
+    }
+  }
 
   // user signUp
   signUp(email: string, password: string) {
@@ -64,6 +118,11 @@ export class AuthService {
         expireDate
       );
       this.userSubject.next(user);
+      // autoLogout gets called after emitting user
+      this.autoLogout(expiresIn * 1000);
+
+      // storing user Data into our storage to persist the user Data
+      localStorage.setItem('userData', JSON.stringify(user));
   }
 
   // outsourced the error handling for signin and signup into a private method
@@ -84,5 +143,6 @@ export class AuthService {
         break;
     }
     return throwError(errorMessage);
+    /// throwError creates a new observable which wraps the error
     }
 }

@@ -1,11 +1,11 @@
-
-
+import { AuthInterceptorService } from './../auth/auth-interceptor.service';
+import { AuthService } from './../auth/auth.service';
 import { Recipe } from './../recipes/recipe.model';
 
-import { map } from 'rxjs/operators';
-import { tap } from 'rxjs/operators';
+import { map, tap, take, exhaustMap } from 'rxjs/operators';
+
 import { RecipeService } from './../recipes/recipe.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({providedIn: 'root'})
@@ -13,7 +13,10 @@ export class DataStorageService  {
 
 
 
-constructor(private http: HttpClient, private recipeService: RecipeService) {}
+constructor(
+  private http: HttpClient,
+  private recipeService: RecipeService,
+  ) {}
 
 storeRecipes() {
   const recipes = this.recipeService.getRecipes();
@@ -24,9 +27,8 @@ storeRecipes() {
 }
 
 fetchRecipes() {
-  return this.http
-  .get<Recipe[]>('https://ng-my-recipe-book-a7fe2.firebaseio.com/recipes.json')
-  .pipe(map(recipes => {
+ return this.http.get<Recipe[]>('https://ng-my-recipe-book-a7fe2.firebaseio.com/recipes.json').pipe(
+  map(recipes => {
     ///// AFTER MAP OPERATOR TRANSFORMATION, JS MAP RETURNS RECIPE WITH INGREDIENTS ARRAY IF !undefiend else empty ARRAY
     return recipes.map(recipe => ({...recipe, ingredients: recipe.ingredients ? recipe.ingredients : []}));
   }),
@@ -34,6 +36,7 @@ fetchRecipes() {
       this.recipeService.replaceRecipe(recipes);
     })
   );
+
 }
 
 }

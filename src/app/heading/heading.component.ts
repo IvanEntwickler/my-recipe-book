@@ -3,6 +3,7 @@ import { AuthService } from './../auth/auth.service';
 import { Recipe } from './../recipes/recipe.model';
 import { DataStorageService } from './../shared/data-storage.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { userInfo } from 'os';
 
 
 @Component({
@@ -18,16 +19,8 @@ export class HeadingComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     // if user object is there isAuth will become true, if null isAuth=false
-    this.subscription = this.authService.userSubject.subscribe(
-      user => {
-        switch (user) {
-          case user:
-          this.isAuth = !this.isAuth;
-          break;
-          case null:
-          return this.isAuth;
-        }
-      }
+    this.subscription = this.authService.userSubject.subscribe( user =>
+      this.isAuth = !user ? false : true
     );
   }
 
@@ -39,6 +32,10 @@ export class HeadingComponent implements OnInit, OnDestroy {
 
   onFetchData() {
     this.dataStorageService.fetchRecipes().subscribe();
+  }
+
+  onLogOut() {
+    this.authService.logOut();
   }
 
   ngOnDestroy() {
