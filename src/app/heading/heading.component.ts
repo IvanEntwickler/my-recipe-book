@@ -3,7 +3,6 @@ import { AuthService } from './../auth/auth.service';
 import { Recipe } from './../recipes/recipe.model';
 import { DataStorageService } from './../shared/data-storage.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { userInfo } from 'os';
 
 
 @Component({

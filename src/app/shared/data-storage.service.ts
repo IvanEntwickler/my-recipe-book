@@ -1,11 +1,10 @@
-import { AuthInterceptorService } from './../auth/auth-interceptor.service';
-import { AuthService } from './../auth/auth.service';
+
 import { Recipe } from './../recipes/recipe.model';
 
-import { map, tap, take, exhaustMap } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 
 import { RecipeService } from './../recipes/recipe.service';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({providedIn: 'root'})
