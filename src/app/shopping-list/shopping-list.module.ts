@@ -12,12 +12,12 @@ import { NgModule } from '@angular/core';
   ],
   imports: [
     RouterModule.forChild([
-      {path: 'shopping-list', component: ShoppingListComponent, children: [
+      {path: '', component: ShoppingListComponent, children: [
       {path: ':shopping-edit', component: ShoppingEditComponent}
       ]}
     ]),
     // SharedModule instead of CommonModule to demonstrate
-    // CommonModule was put into SharedModule because it is in
+    // CommonModule was put into SharedModule because it is
     // used in ShoppingListModule and RecipesModule
     SharedModule,
     FormsModule
