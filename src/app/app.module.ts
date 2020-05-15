@@ -1,3 +1,4 @@
+import { SharedModule } from './shared/shared.module';
 
 import { CoreModule } from './core.module';
 import { HttpClientModule } from '@angular/common/http';
@@ -22,7 +23,8 @@ import { HeadingComponent } from './heading/heading.component';
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    CoreModule
+    CoreModule,
+    SharedModule
   ],
   bootstrap: [AppComponent]
 })
