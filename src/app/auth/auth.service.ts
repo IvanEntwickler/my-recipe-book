@@ -1,8 +1,10 @@
+import { environment } from './../../environments/environment';
 import { User } from './user.model';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, tap } from 'rxjs/operators';
 import { throwError, BehaviorSubject } from 'rxjs';
+
 
 /// Data we get back from Firebase
 export interface AuthResponseData {
@@ -77,10 +79,11 @@ export class AuthService {
   // user signUp
   signUp(email: string, password: string) {
     return this.http.post<AuthResponseData>(
-      'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDvCDuw8y-IOeBgYCAS4hwkX6rLOsvcmUc'
-      ,
+      'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' + environment.firebaseAPIKey,
       {
+        // tslint:disable-next-line:object-literal-shorthand
         email: email,
+        // tslint:disable-next-line:object-literal-shorthand
         password: password,
         returnSecureToken: true
       }
@@ -93,10 +96,11 @@ export class AuthService {
   // user signIn
   signIn(email: string, password: string) {
     return this.http.post<AuthResponseData>(
-      'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDvCDuw8y-IOeBgYCAS4hwkX6rLOsvcmUc'
-      ,
+      'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' + environment.firebaseAPIKey,
       {
+        // tslint:disable-next-line:object-literal-shorthand
         email: email,
+        // tslint:disable-next-line:object-literal-shorthand
         password: password,
         returnSecureToken: true
       }
